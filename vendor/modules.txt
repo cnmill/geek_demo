@@ -1,3 +1,6 @@
+# github.com/go-sql-driver/mysql v1.6.0
+## explicit; go 1.10
+github.com/go-sql-driver/mysql
 # github.com/jinzhu/inflection v1.0.0
 ## explicit
 github.com/jinzhu/inflection
@@ -7,10 +10,15 @@ github.com/jinzhu/now
 # github.com/pkg/errors v0.9.1
 ## explicit
 github.com/pkg/errors
+# gorm.io/driver/mysql v1.2.1
+## explicit; go 1.14
+gorm.io/driver/mysql
 # gorm.io/gorm v1.22.4
 ## explicit; go 1.14
 gorm.io/gorm
+gorm.io/gorm/callbacks
 gorm.io/gorm/clause
 gorm.io/gorm/logger
+gorm.io/gorm/migrator
 gorm.io/gorm/schema
 gorm.io/gorm/utils

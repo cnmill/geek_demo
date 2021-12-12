@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/pkg/errors"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"os"
 )
 
 /**
@@ -21,6 +21,7 @@ func initDB() *gorm.DB {
 	if err != nil {
 		fmt.Println(err)
 	}
+	return db
 }
 func main() {
 	var n string
@@ -40,14 +41,13 @@ type user struct {
 
 func dao(n string) (u user, err error) {
 	db := initDB()
-	var u user
-	err := db.Raw("SELECT id,name"+
+	err = db.Raw("SELECT id,name"+
 		"FROM user").Where("name like ?", n).Scan(&u).Error
 	if err == sql.ErrNoRows {
-		return errors.Wrapf(errors.New("not found"), fmt.Sprintf("no user: %s", n))
+		return u, errors.Wrapf(errors.New("not found"), fmt.Sprintf("no user: %s", n))
 	}
 	if err != nil {
-		return errors.Wrapf(err)
+		return u, errors.Wrapf(err, fmt.Sprintf("system error: %s", n))
 	}
 	return u, nil
 }
